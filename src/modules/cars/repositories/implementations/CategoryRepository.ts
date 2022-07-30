@@ -1,15 +1,27 @@
-import { Category } from "../model/Category";
-import { ICategoryRepository, ICreateCategoryDTO } from "./ICategoryRepository";
+import { Category } from "../../model/Category";
+import {
+  ICategoryRepository,
+  ICreateCategoryDTO,
+} from "../ICategoryRepository";
 
-// O DTO (Data Transfer Object) é responsável por fazer a transferencia de dados
-// entre uma classe e outra
+// singleton
 
 class CategoryRepository implements ICategoryRepository {
   private categories: Category[];
 
-  constructor() {
+  private static INSTANCE: CategoryRepository;
+
+  private constructor() {
     this.categories = [];
   }
+
+  public static getInstance(): CategoryRepository {
+    if (!CategoryRepository.INSTANCE) {
+      CategoryRepository.INSTANCE = new CategoryRepository();
+    }
+    return CategoryRepository.INSTANCE;
+  }
+
   public create({ name, description }: ICreateCategoryDTO): void {
     const category = new Category();
 

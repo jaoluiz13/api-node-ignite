@@ -18,7 +18,7 @@ interface IResponse {
 }
 
 @injectable()
-class AuthenticateUserUSeCase {
+class AuthenticateUserUseCase {
   constructor(
     @inject("UserRepository")
     private userRepository: IUserRepository
@@ -29,7 +29,6 @@ class AuthenticateUserUSeCase {
     if (!user) {
       throw new AppError("Email or password incorrect");
     }
-    console.log(user.password, password);
     // Senha correta
     const passwordMatch = await compare(password, user.password);
     if (!passwordMatch) {
@@ -51,4 +50,4 @@ class AuthenticateUserUSeCase {
     return returnTokenInfo;
   }
 }
-export { AuthenticateUserUSeCase };
+export { AuthenticateUserUseCase };

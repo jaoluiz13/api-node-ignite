@@ -37,7 +37,7 @@ class Car {
   category_id: string;
 
   @Column()
-  available = true;
+  available: boolean;
 
   @CreateDateColumn()
   created_at: Date;
@@ -49,6 +49,7 @@ class Car {
   constructor() {
     if (!this.id) {
       this.id = uuidv4();
+      this.available = true;
     }
   }
 }

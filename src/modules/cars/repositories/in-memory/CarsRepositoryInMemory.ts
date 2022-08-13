@@ -4,7 +4,7 @@ import { ICarRepository } from "../ICarRepository";
 
 class CarsRepositoryInMemory implements ICarRepository {
   cars: Car[] = [];
-  create({
+  async create({
     name,
     description,
     daily_rate,
@@ -12,7 +12,7 @@ class CarsRepositoryInMemory implements ICarRepository {
     fine_amount,
     brand,
     category_id,
-  }: ICreateCarDTO): void {
+  }: ICreateCarDTO): Promise<Car> {
     const car = new Car();
     Object.assign(car, {
       name,
@@ -24,6 +24,10 @@ class CarsRepositoryInMemory implements ICarRepository {
       category_id,
     });
     this.cars.push(car);
+    return car;
+  }
+  async findByLicensePlate(license_plate: string): Promise<Car> {
+    return this.cars.find((car) => car.license_plate === license_plate);
   }
 }
 

@@ -1,0 +1,3 @@
+class ListCarUseCase {}
+
+export { ListCarUseCase };

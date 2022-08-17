@@ -1,3 +1,0 @@
-class ListCarUseCase {}
-
-export { ListCarUseCase };

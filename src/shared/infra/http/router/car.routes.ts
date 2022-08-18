@@ -20,6 +20,11 @@ carRoutes.post(
 
 carRoutes.get("/available", listAvailableCarController.handle);
 
-carRoutes.post("/specifications/:id", createCarSpecificationController.handle);
+carRoutes.post(
+  "/specifications/:id",
+  ensureAuthenticated,
+  ensureAdmin,
+  createCarSpecificationController.handle
+);
 
 export { carRoutes };

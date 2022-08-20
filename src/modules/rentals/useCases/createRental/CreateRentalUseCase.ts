@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import { inject, injectable } from "tsyringe";
 
 import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "../../../../shared/errors/AppErrors";
@@ -11,9 +11,12 @@ interface IRequest {
   expected_return_date: Date;
 }
 
+@injectable()
 class CreateRentalUseCase {
   constructor(
+    @inject("RentalRepository")
     private rentalRepository: IRentalRepository,
+    @inject("DateProvider")
     private dateProvider: IDateProvider
   ) {}
   async execute({
@@ -41,8 +44,8 @@ class CreateRentalUseCase {
     //
     const dateNow = this.dateProvider.dateNow();
     const compare = this.dateProvider.compareInHours(
-      expected_return_date,
-      dateNow
+      dateNow,
+      expected_return_date
     );
 
     if (compare < minHourToRental) {

@@ -10,8 +10,13 @@ import { ICarImageRepository } from "../../modules/cars/repositories/ICarImageRe
 import { ICarRepository } from "../../modules/cars/repositories/ICarRepository";
 import { ICategoryRepository } from "../../modules/cars/repositories/ICategoryRepository";
 import { ISpecificationRepository } from "../../modules/cars/repositories/ISpecificationRepository";
+import { IRentalRepository } from "../../modules/rentals/infra/typeorm/repositories/IRentalRepository";
+import { RentalRepository } from "../../modules/rentals/repositories/RentalRepository";
+
+import "./providers";
 
 // Cria um registro de um singleton que aponta para o respositorio CategoryRepository
+
 container.registerSingleton<ICategoryRepository>(
   "CategoryRepository",
   CategoryRepository
@@ -29,4 +34,9 @@ container.registerSingleton<ICarRepository>("CarRepository", CarRepository);
 container.registerSingleton<ICarImageRepository>(
   "CarImageRepository",
   CarImageRepository
+);
+
+container.registerSingleton<IRentalRepository>(
+  "RentalRepository",
+  RentalRepository
 );

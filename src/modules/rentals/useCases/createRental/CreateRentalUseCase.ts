@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 
 import { IDateProvider } from "../../../../shared/container/providers/DateProvider/IDateProvider";
 import { AppError } from "../../../../shared/errors/AppErrors";
-import { Rental } from "../../infra/typeorm/entites/Rental";
+import { Rental } from "../../infra/typeorm/entities/Rental";
 import { IRentalRepository } from "../../infra/typeorm/repositories/IRentalRepository";
 
 interface IRequest {
@@ -30,6 +30,7 @@ class CreateRentalUseCase {
     );
 
     if (carUnavailable) {
+      console.log("entrou 1");
       throw new AppError("Car not available");
     }
 
@@ -38,6 +39,7 @@ class CreateRentalUseCase {
     );
 
     if (rentalOpenToUser) {
+      console.log("entrou 2");
       throw new AppError("User already have a open rental");
     }
 
@@ -49,6 +51,7 @@ class CreateRentalUseCase {
     );
 
     if (compare < minHourToRental) {
+      console.log("entrou 3");
       throw new AppError("The minimum hour to rental a car is 24 hours");
     }
 

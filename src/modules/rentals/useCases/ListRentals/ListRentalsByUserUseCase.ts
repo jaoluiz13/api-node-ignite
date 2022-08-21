@@ -1,8 +1,9 @@
-import { inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
 import { Rental } from "../../infra/typeorm/entities/Rental";
 import { IRentalRepository } from "../../infra/typeorm/repositories/IRentalRepository";
 
+@injectable()
 class ListRentalsByUserUseCase {
   constructor(
     @inject("RentalRepository")

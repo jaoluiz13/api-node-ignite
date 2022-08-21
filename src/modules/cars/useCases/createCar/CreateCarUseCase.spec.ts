@@ -22,18 +22,18 @@ describe("Create car", () => {
     });
   });
   it("Should be not be able to create a car with a existing license_plate", async () => {
-    expect(async () => {
-      await createCarUseCase.execute({
-        name: "name_test1",
-        description: "testing license_plate 1 ",
-        daily_rate: 100,
-        license_plate: "abcdef",
-        fine_amount: 100,
-        brand: "vw",
-        category_id: "555555aawwwww",
-      });
+    await createCarUseCase.execute({
+      name: "name_test1",
+      description: "testing license_plate 1 ",
+      daily_rate: 100,
+      license_plate: "abcdef",
+      fine_amount: 100,
+      brand: "vw",
+      category_id: "555555aawwwww",
+    });
 
-      await createCarUseCase.execute({
+    await expect(
+      createCarUseCase.execute({
         name: "name_test 2 ",
         description: "testing 2",
         daily_rate: 100,
@@ -41,8 +41,8 @@ describe("Create car", () => {
         fine_amount: 100,
         brand: "vw",
         category_id: "555555aawwwww",
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError("Car Already Exists"));
   });
 
   it("Should be not be able to create a car with available true by default", async () => {

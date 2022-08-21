@@ -9,7 +9,6 @@ class CreateRentalController {
     const { id } = request.user;
 
     const createRentalUseCase = container.resolve(CreateRentalUseCase);
-    console.log(car_id, expected_return_date, id);
     await createRentalUseCase.execute({
       car_id,
       expected_return_date,

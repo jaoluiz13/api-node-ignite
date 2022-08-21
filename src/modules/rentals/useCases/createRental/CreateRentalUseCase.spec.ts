@@ -2,20 +2,24 @@ import dayjs from "dayjs";
 
 import { DayJsDateProvider } from "../../../../shared/container/providers/DateProvider/implementations/DayJsDateProvider";
 import { AppError } from "../../../../shared/errors/AppErrors";
+import { CarsRepositoryInMemory } from "../../../cars/repositories/in-memory/CarsRepositoryInMemory";
 import { RentalRepositoryInMemory } from "../../infra/typeorm/repositories/in-memory/RentalRepositoryInMemory";
 import { CreateRentalUseCase } from "./CreateRentalUseCase";
 
 let createRentalUseCase: CreateRentalUseCase;
 let rentalRepositoryInMemory: RentalRepositoryInMemory;
+let carsRepositoryInMemory: CarsRepositoryInMemory;
 let dayJsDateProvider: DayJsDateProvider;
 
 describe("Create Rental", () => {
   const dayAdd24Hours = dayjs().add(1, "day").toDate();
   beforeEach(() => {
     rentalRepositoryInMemory = new RentalRepositoryInMemory();
+    carsRepositoryInMemory = new CarsRepositoryInMemory();
     createRentalUseCase = new CreateRentalUseCase(
       rentalRepositoryInMemory,
-      dayJsDateProvider
+      dayJsDateProvider,
+      carsRepositoryInMemory
     );
   });
   it("Should be able to rental a available car", async () => {
@@ -57,7 +61,7 @@ describe("Create Rental", () => {
         car_id: "123456",
         expected_return_date: dayAdd24Hours,
       });
-    }).toBeInstanceOf(AppError);
+    }).toBeInstanceOf(Error);
   });
 
   it("Should be not able to rental a car if the return date is less than 24 hours", async () => {
@@ -67,6 +71,6 @@ describe("Create Rental", () => {
         car_id: "123456",
         expected_return_date: dayjs().toDate(),
       });
-    }).toBeInstanceOf(AppError);
+    }).toBeInstanceOf(Error);
   });
 });

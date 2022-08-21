@@ -15,20 +15,19 @@ describe("Create Car Specification", () => {
     );
   });
 
-  it("Should be able to add a new specification to a non-existing car", () =>
-    async () => {
-      expect(async () => {
-        const car_id = "68ec481d-2cda-4857-92dc-b91f5e0f9bba";
-        const specifications_id = ["5a8d319e-a1c0-4cea-a968-41c2f1c03ab7"];
+  it("Should be able to add a new specification to a non-existing car", async () => {
+    expect(async () => {
+      const car_id = "68ec481d-2cda-4857-92dc-b91f5e0f9bba";
+      const specifications_id = ["5a8d319e-a1c0-4cea-a968-41c2f1c03ab7"];
 
-        await createCarSpecificationUseCase.execute({
-          car_id,
-          specifications_id,
-        });
+      await createCarSpecificationUseCase.execute({
+        car_id,
+        specifications_id,
       });
     });
+  });
 
-  it("Should be able to add a new specification to a  car", () => async () => {
+  it("Should be able to add a new specification to a  car", async () => {
     const car = await carsRepositoryInMemory.create({
       name: "carrinho do admin",
       description: "novo kkkkk",

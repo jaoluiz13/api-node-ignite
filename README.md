@@ -11,4 +11,4 @@ executar os seguintes comandos :
 2- docker-compose up
 
 <br/>
-Para ver a documentação no swagger acessar a rota : [http//:localhost:3333/api-docs](http://localhost:3333/api-docs)
+Para ver a documentação no swagger acessar a rota : http//:localhost:3333/api-docs

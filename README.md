@@ -7,6 +7,8 @@ Para acessar a documentação localmente
 executar os seguintes comandos :
 
 1- yarn
+<br/>
 2- docker-compose up
 
-Para ver a documentação no swagger acessar a rota : https:localhost:3333/api-docs
+<br/>
+Para ver a documentação no swagger acessar a rota : [http//:localhost:3333/api-docs](http://localhost:3333/api-docs)

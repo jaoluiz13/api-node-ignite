@@ -15,8 +15,8 @@ import { ISpecificationRepository } from "../../modules/cars/repositories/ISpeci
 import { IRentalRepository } from "../../modules/rentals/infra/typeorm/repositories/IRentalRepository";
 import { RentalRepository } from "../../modules/rentals/repositories/RentalRepository";
 
-import "./providers";
-
+import "./providers/DateProvider";
+import "./providers/MailProvider";
 // Cria um registro de um singleton que aponta para o respositorio CategoryRepository
 
 container.registerSingleton<ICategoryRepository>(

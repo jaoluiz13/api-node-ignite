@@ -17,6 +17,7 @@ import { RentalRepository } from "../../modules/rentals/repositories/RentalRepos
 
 import "./providers/DateProvider";
 import "./providers/MailProvider";
+import "./providers/StorageProvider";
 // Cria um registro de um singleton que aponta para o respositorio CategoryRepository
 
 container.registerSingleton<ICategoryRepository>(

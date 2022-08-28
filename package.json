@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build":"babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
     "test": "NODE_ENV=test jest --runInBand --detectOpenHandles",
@@ -25,6 +25,8 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.7.8",
     "pg": "^8.7.3",
+    "rate-limiter-flexible": "^2.3.8",
+    "redis": "^4.3.0",
     "reflect-metadata": "^0.1.13",
     "supertest": "^6.2.4",
     "swagger-ui-express": "^4.5.0",

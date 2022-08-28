@@ -11,11 +11,13 @@ import { router } from "./router";
 
 import "../../container";
 import upload from "../../../config/upload";
+import rateLImiter from "./middlewares/rateLimiter";
 
 createConection();
 const app = express();
 
 app.use(express.json());
+app.use(rateLImiter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use("/avatar", express.static(`${upload.tmpFolder}/avatar`));
 app.use("/cars", express.static(`${upload.tmpFolder}/cars`));
